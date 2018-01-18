@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import club.sk1er.mods.kokuminpvp.prefixjoinmsg.Multithreading;
 import club.sk1er.mods.kokuminpvp.prefixjoinmsg.Sk1erMod;
-import io.netty.buffer.Unpooled;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
