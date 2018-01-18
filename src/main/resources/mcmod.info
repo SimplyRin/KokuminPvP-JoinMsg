@@ -1,0 +1,16 @@
+[
+{
+  "modid": "KokuminPvP-JoinMsg",
+  "name": "KokuminPvP-JoinMsg",
+  "description": "KokuminPvP | kokum.info.tm:15072",
+  "version": "${version}",
+  "mcversion": "1.8.9",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["SimplyRin"],
+  "credits": "KokuminPvP | kokum.info.tm:15072",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
