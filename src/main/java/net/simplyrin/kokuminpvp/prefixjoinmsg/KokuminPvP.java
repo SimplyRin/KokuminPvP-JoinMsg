@@ -19,10 +19,12 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 public class KokuminPvP {
 
 	public static final String MODID = "KokuminPvP-JoinMsg";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.1";
 
 	private boolean isKokumin;
+	private String disableMessage = null;
 	private boolean isInfo = false;
+	private boolean isGlobalInfo = false;
 	private JSONObject object = null;
 
 	@EventHandler
@@ -37,8 +39,17 @@ public class KokuminPvP {
 						this.isInfo = true;
 					}
 				}
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
+
+			try {
+				JSONObject result = new JSONObject(Sk1erMod.rawWithAgent("https://api.simplyrin.net/Forge-Mods/KokuminPvP/JoinMsg/info.json"));
+				if(result.has("disable")) {
+					if(result.getBoolean("disable")) {
+						this.isGlobalInfo = true;
+						this.disableMessage = ChatColor.translateAlternateColorCodes('&', result.has("message") ? result.getString("message") : "&c&lThis is temporarily disabled.");
+					}
+				}
+			} catch (Exception e) {}
 
 			this.object = new JSONObject(Sk1erMod.rawWithAgent("https://api.simplyrin.net/Minecraft-Server/Kokumin/prefixes.json"));
 		});
@@ -88,15 +99,26 @@ public class KokuminPvP {
 		if(args[1].equals("joined") && args[2].equals("the") && args[3].equals("game.")) {
 			String name = args[0];
 
-			if(object.has(name)) {
+			if(this.object.has(name)) {
+
+				if(this.isGlobalInfo) {
+					System.out.println(KokuminPvP.getPrefix() + this.disableMessage);
+					KokuminPvP.sendMessage(KokuminPvP.getPrefix() + this.disableMessage);
+					return;
+				}
+
 				event.setCanceled(true);
 
-				String msg = object.getString("Join-Message");
-				msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', object.getString(name)) + name);
+				String msg = this.object.getString("Join-Message");
+				msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', this.object.getString(name)) + name);
 
 				KokuminPvP.sendMessage(msg);
 			}
 		}
+	}
+
+	private static String getPrefix() {
+		return "§7[§cKokuminPvP§7] §r";
 	}
 
 	public static void sendMessage(String message) {
