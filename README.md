@@ -1,7 +1,7 @@
 # KokuminPvP-JoinMsg-1.8.9
 国民サーバー(<a href="https://namemc.com/server/kokum.info.tm:15072">kokum.info.tm:15072<a/>)の Join メッセージに Owner, Admin, Famous ランクを持っているユーザーに Prefix を付けれる Mod です。
 
-<img src="https://t.gyazo.com/teams/omn/237334cd371eca6d332655ea28985271.png" alt="237334cd371eca6d332655ea28985271" title="237334cd371eca6d332655ea28985271">
+<img src="https://t.gyazo.com/teams/omn/d84b7e25ea647f05bf682337e999f0fa.png" alt="d84b7e25ea647f05bf682337e999f0fa" title="d84b7e25ea647f05bf682337e999f0fa">
 
 <img src="https://t.gyazo.com/teams/omn/070e65a5e82eb379a5d8756ebaaaaa77.png" alt="070e65a5e82eb379a5d8756ebaaaaa77" title="070e65a5e82eb379a5d8756ebaaaaa77">
 
@@ -9,7 +9,7 @@
 
 ダウンロード: <a href="https://github.com/SimplyRin/KokuminPvP-JoinMsg/releases">Release<a/> 
 
-※ Nucha さんから許可は多分強制的にもらいました (たぶん)
+※ Nucha さんから許可をもらいました。
 
 # Libraries
 
