@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 public class KokuminPvP {
 
 	public static final String MODID = "KokuminPvP-JoinMsg";
-	public static final String VERSION = "1.1";
+	public static final String VERSION = "1.2";
 
 	private boolean isKokumin;
 	private String disableMessage = null;
@@ -94,7 +94,9 @@ public class KokuminPvP {
 			if(args[3].isEmpty()) {
 				return;
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			return;
+		}
 
 		if(args[1].equals("joined") && args[2].equals("the") && args[3].equals("game.")) {
 			String name = args[0];
@@ -109,10 +111,14 @@ public class KokuminPvP {
 
 				event.setCanceled(true);
 
-				String msg = this.object.getString("Join-Message");
-				msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', this.object.getString(name)) + name);
+				try {
+					String msg = this.object.getString("Join-Message");
+					msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', this.object.getString(name)) + name);
 
-				KokuminPvP.sendMessage(msg);
+					KokuminPvP.sendMessage(msg);
+				} catch (Exception e) {
+					return;
+				}
 			}
 		}
 	}
