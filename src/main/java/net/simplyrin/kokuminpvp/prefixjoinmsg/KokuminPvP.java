@@ -74,50 +74,28 @@ public class KokuminPvP {
 			return;
 		}
 
-		try {
-			if(args == null) {
-				return;
-			}
+		if(args.length > 3) {
+			if(args[1].equals("joined") && args[2].equals("the") && args[3].equals("game.")) {
+				String name = args[0];
 
-			if(args[0].isEmpty()) {
-				return;
-			}
+				if(this.object.has(name)) {
 
-			if(args[1].isEmpty()) {
-				return;
-			}
+					if(this.isGlobalInfo) {
+						System.out.println(KokuminPvP.getPrefix() + this.disableMessage);
+						KokuminPvP.sendMessage(KokuminPvP.getPrefix() + this.disableMessage);
+						return;
+					}
 
-			if(args[2].isEmpty()) {
-				return;
-			}
+					event.setCanceled(true);
 
-			if(args[3].isEmpty()) {
-				return;
-			}
-		} catch (Exception e) {
-			return;
-		}
+					try {
+						String msg = this.object.getString("Join-Message");
+						msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', this.object.getString(name)) + name);
 
-		if(args[1].equals("joined") && args[2].equals("the") && args[3].equals("game.")) {
-			String name = args[0];
-
-			if(this.object.has(name)) {
-
-				if(this.isGlobalInfo) {
-					System.out.println(KokuminPvP.getPrefix() + this.disableMessage);
-					KokuminPvP.sendMessage(KokuminPvP.getPrefix() + this.disableMessage);
-					return;
-				}
-
-				event.setCanceled(true);
-
-				try {
-					String msg = this.object.getString("Join-Message");
-					msg = msg.replace("%player", ChatColor.translateAlternateColorCodes('&', this.object.getString(name)) + name);
-
-					KokuminPvP.sendMessage(msg);
-				} catch (Exception e) {
-					return;
+						KokuminPvP.sendMessage(msg);
+					} catch (Exception e) {
+						return;
+					}
 				}
 			}
 		}
